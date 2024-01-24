@@ -17,7 +17,46 @@ the function below should be the only one in this file.
 void split(Node*& in, Node*& odds, Node*& evens)
 {
   /* Add code here */
-// WRITE YOUR CODE HERE
+  // WRITE YOUR CODE HERE
+  //Recursive terminating checkContent
+  if(in == nullptr){
+    return;
+  }
+  
+  //Stores this steps value. 
+  Node* currVal = in;
+  //Updates the 'in' list to the next value.
+  in = in->next;
+  //Ensures that the current value isn't linked to the 'in' (next value)
+  currVal->next = nullptr;
+
+  //Checks if the number is odd or even
+  if((currVal->value) % 2 == 0){
+  //Adds the new value to the list
+    evens = currVal;
+  //Continues with soritng
+    split(in, odds, evens->next);
+  //Updates the pointer to the evens so at the end it keeps the first number.
+    evens = currVal;
+  }else{
+    odds = currVal;
+    split(in, odds->next, evens);
+    odds = currVal;
+  }
 }
 
 /* If you needed a helper function, write it here */
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
